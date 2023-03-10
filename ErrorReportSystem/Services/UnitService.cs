@@ -13,6 +13,11 @@ internal class UnitService
     private static DataContext _context = new DataContext();
     private static ObservableCollection<Unit> units;
 
+ 
+
+
+
+
     //save new unit
     public static async Task SaveUnitAsync(Unit unit)
     {

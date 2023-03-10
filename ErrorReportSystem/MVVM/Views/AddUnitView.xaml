@@ -15,7 +15,8 @@
             <RowDefinition />
         </Grid.RowDefinitions>
 
-        <TextBlock Grid.Row="0" Text="{Binding PageTitle}" FontSize="22" FontWeight="Medium" Margin="0 0 0 50" />
+        <TextBlock Grid.Row="0" Text="Units" FontSize="22" FontWeight="Medium" Margin="0 0 0 50" />
+        <TextBlock Grid.Row="0" HorizontalAlignment="right" Text="{Binding PageTitle}" FontSize="22" FontWeight="Medium" Margin="0 0 0 50" />
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="33*" />
@@ -23,7 +24,7 @@
                 <ColumnDefinition Width="40*" />
             </Grid.ColumnDefinitions>
 
-            <ListView Background="Transparent" ItemsSource="{Binding Units}" HorizontalContentAlignment="Stretch" Grid.ColumnSpan="2">
+            <ListView Background="Transparent" ItemsSource="{Binding Units}" HorizontalContentAlignment="Stretch" SelectionMode="Single" SelectedItem="{Binding SelectedUnit}" Grid.ColumnSpan="2">
                 <ListView.ItemTemplate>
                     <DataTemplate DataType="{x:Type models:Unit}">
                         <Grid Margin="0 5 0 5">
@@ -39,6 +40,8 @@
                                 <TextBlock Text="{Binding PostalCode}" />
                                 <TextBlock Text="{Binding City}" />
                             </StackPanel>
+                            <Button Command="{Binding DeleteUnitAsyncCommand}" Content="Remove" Width="90" Margin="5 15 5 5"/>
+
                         </Grid>
                     </DataTemplate>
                 </ListView.ItemTemplate>
@@ -46,10 +49,9 @@
 
 
 
-            <TextBlock Grid.Row="0" Text="{Binding PageTitle}" FontSize="22" FontWeight="Medium" Margin="0 0 0 50" />
+            
 
-            <StackPanel Grid.Column="2">
-
+            <StackPanel Grid.Row="1" Grid.Column="2">
                 <TextBlock Grid.Column="0" Text="Street: " HorizontalAlignment="left" />
                 <TextBox Grid.Column="1" x:Name="tb_street"  Padding="5" Margin="0 5 0 5" Width="400"  HorizontalAlignment="Left" />
                 <TextBlock Grid.Column="0" Text="StreetNumber: " />
