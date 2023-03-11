@@ -39,39 +39,49 @@ public partial class AddUnitViewModel : ObservableObject
     [ObservableProperty]
     private UnitModel selectedUnit = null!;
 
-
-
     [RelayCommand]
-    public void Add()
+    public async Task Add()
     {
-        UnitService.SaveUnitAsync(unit);
-        unit = new UnitModel();
+        await UnitService.SaveUnitAsync(Unit); 
+        foreach (var item in UnitService.Units()) 
+            Units.Add(item);
+
+        Unit = new UnitModel();
     }
 
-    
 
 
-
-
-
-/*    [RelayCommand]
-    public void DeleteUnitAsync()
-    {
-        string mb_message = "Are you sure you want to delete this contact?";
-        string mb_title = "Delete contact";
-        MessageBoxButton buttons = MessageBoxButton.YesNo;
-        MessageBoxImage mb_icon = MessageBoxImage.Question;
-        MessageBoxResult result;
-
-
-        result = MessageBox.Show(mb_message, mb_title, buttons, mb_icon, MessageBoxResult.Yes);
-
-        if (result == MessageBoxResult.Yes)
+    /*    [RelayCommand]
+        public async Task Add()
         {
-            UnitService.DeleteUnitAsync(SelectedUnit);
-        }
-        else { }
+            await UnitService.SaveUnitAsync(Unit);
+            Unit = new UnitModel();
+        }*/
 
-    }*/
+
+
+
+
+
+
+    /*    [RelayCommand]
+        public void DeleteUnitAsync()
+        {
+            string mb_message = "Are you sure you want to delete this contact?";
+            string mb_title = "Delete contact";
+            MessageBoxButton buttons = MessageBoxButton.YesNo;
+            MessageBoxImage mb_icon = MessageBoxImage.Question;
+            MessageBoxResult result;
+
+
+            result = MessageBox.Show(mb_message, mb_title, buttons, mb_icon, MessageBoxResult.Yes);
+
+            if (result == MessageBoxResult.Yes)
+            {
+                UnitService.DeleteUnitAsync(SelectedUnit);
+            }
+            else { }
+
+        }*/
 }
 
