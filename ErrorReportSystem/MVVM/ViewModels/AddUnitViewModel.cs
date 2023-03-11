@@ -2,25 +2,42 @@
 using CommunityToolkit.Mvvm.Input;
 using ErrorReportSystem.MVVM.Models;
 using ErrorReportSystem.Services;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Threading.Tasks;
 using System.Windows;
 
 namespace ErrorReportSystem.MVVM.ViewModels;
 
 public partial class AddUnitViewModel : ObservableObject
 {
+
+    public AddUnitViewModel()
+    {
+        LoadUnitsAsync();
+    }
+
+
+    public async Task LoadUnitsAsync()
+    {
+        await UnitService.GetAllUnitsAsync();
+    }
+
+
+
+
     [ObservableProperty]
     private string pageTitle = "Add unit";
 
     [ObservableProperty]
-    private ObservableCollection<Unit> units = UnitService.Units();
+    private ObservableCollection<UnitModel> units = UnitService.Units();
 
 
     [ObservableProperty]
-    private Unit unit = new Unit();
+    private UnitModel unit = new UnitModel();
 
     [ObservableProperty]
-    private Unit selectedUnit = null!;
+    private UnitModel selectedUnit = null!;
 
 
 
@@ -28,7 +45,7 @@ public partial class AddUnitViewModel : ObservableObject
     public void Add()
     {
         UnitService.SaveUnitAsync(unit);
-        unit = new Unit();
+        unit = new UnitModel();
     }
 
     

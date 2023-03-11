@@ -1,6 +1,6 @@
 ﻿namespace ErrorReportSystem.MVVM.Models;
 
-internal class Resident
+internal class ResidentModel
 {
     public int Id { get; set; }
     public string FirstName { get; set; } = null!;

@@ -11,15 +11,11 @@ namespace ErrorReportSystem.Services;
 internal class UnitService
 {
     private static DataContext _context = new DataContext();
-    private static ObservableCollection<Unit> units;
-
- 
-
-
+    public static ObservableCollection<UnitModel> units;
 
 
     //save new unit
-    public static async Task SaveUnitAsync(Unit unit)
+    public static async Task SaveUnitAsync(UnitModel unit)
     {
         var _unitEntity = new UnitEntity
         {
@@ -36,12 +32,12 @@ internal class UnitService
     }
 
     //get all units
-    public static async Task<IEnumerable<Unit>> GetAllUnitsAsync()
+    public static async Task<IEnumerable<UnitModel>> GetAllUnitsAsync()
     {
-        var _units = new List<Unit>();
+        var _units = new List<UnitModel>();
 
         foreach (var _unit in await _context.Units.ToListAsync())
-            _units.Add(new Unit
+            _units.Add(new UnitModel
             {
                 Id = _unit.Id,
                 Street = _unit.Street,
@@ -65,7 +61,7 @@ internal class UnitService
         }
     }
 
-    public static ObservableCollection<Unit> Units()
+    public static ObservableCollection<UnitModel> Units()
     {
         return units;
     } 

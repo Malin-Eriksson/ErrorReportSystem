@@ -17,7 +17,7 @@ public partial class AddUnitView : UserControl
 
     private void btn_add_Click(object sender, RoutedEventArgs e)
     {
-        UnitService.SaveUnitAsync(new Unit
+        UnitService.SaveUnitAsync(new UnitModel
         {
             Street = tb_street.Text,
             StreetNumber = tb_streetNumber.Text,

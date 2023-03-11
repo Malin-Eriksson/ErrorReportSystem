@@ -1,6 +1,6 @@
 ﻿namespace ErrorReportSystem.MVVM.Models;
 
-public class Unit
+public class UnitModel
 {
     public int Id { get; set; }
     public string Street { get; set; } = null!;

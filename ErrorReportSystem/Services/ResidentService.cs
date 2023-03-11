@@ -14,7 +14,7 @@ internal class ResidentService
 
 
     //function to save resident and their unit id. 
-    public static async Task SaveResidentAsync(Resident resident)
+    public static async Task SaveResidentAsync(ResidentModel resident)
     {
         var _residentEntity = new ResidentEntity
         {
@@ -40,12 +40,12 @@ internal class ResidentService
     }
 
     //Get all residents and their unit id. 
-    public static async Task<IEnumerable<Resident>> GetAllResidentsAsync()
+    public static async Task<IEnumerable<ResidentModel>> GetAllResidentsAsync()
     {
-        var _residents = new List<Resident>();
+        var _residents = new List<ResidentModel>();
 
         foreach (var _resident in await _context.Residents.Include(x => x.Unit).ToListAsync())
-            _residents.Add(new Resident
+            _residents.Add(new ResidentModel
             {
                 Id= _resident.Id,
                 FirstName = _resident.FirstName,
@@ -58,11 +58,11 @@ internal class ResidentService
     }
 
     //Get one resident based on email.
-    public static async Task<Resident> GetOneResidentAsync(string email)
+    public static async Task<ResidentModel> GetOneResidentAsync(string email)
     {
         var _resident = await _context.Residents.Include(x => x.Unit).FirstOrDefaultAsync(x => x.Email == email);
         if (_resident != null)
-            return new Resident
+            return new ResidentModel
             {
                 Id = _resident.Id,
                 FirstName = _resident.FirstName,
