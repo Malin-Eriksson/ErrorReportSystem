@@ -27,7 +27,7 @@
                     <views:AddUnitView />
                 </DataTemplate>
                 <DataTemplate DataType="{x:Type viewmodels:AddResidentViewModel}">
-                    <views:AddUnitView />
+                    <views:AddResidentView />
                 </DataTemplate>
             </ContentControl.Resources>
         </ContentControl>

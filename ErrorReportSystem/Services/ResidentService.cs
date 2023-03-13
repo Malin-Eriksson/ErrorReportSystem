@@ -79,9 +79,9 @@ internal class ResidentService
 
 
     //Delete resident
-    public static async Task DeleteResidentAsync(string email)
+    public static async Task DeleteResidentAsync(int id)
     {
-        var _resident = await _context.Residents.Include(x => x.Unit).FirstOrDefaultAsync(x => x.Email == email);
+        var _resident = await _context.Residents.FirstOrDefaultAsync(x => x.Id == id);
         if (_resident != null)
         {
             _context.Remove(_resident);
