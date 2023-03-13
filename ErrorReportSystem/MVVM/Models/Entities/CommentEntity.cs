@@ -10,7 +10,7 @@ internal class CommentEntity
     public int Id { get; set; }
 
 
-    public DateTime TimeStamp { get; set; }
+    public DateTime TimeStamp { get; set; } = DateTime.Now;
 
 
     //Connects comment/s to a specific fault report.  

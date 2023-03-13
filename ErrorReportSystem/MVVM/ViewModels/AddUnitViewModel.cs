@@ -22,7 +22,8 @@ public partial class AddUnitViewModel : ObservableObject
 
     public AddUnitViewModel()
     {
-        LoadUnitsAsync();
+        LoadUnitsAsync()/*.ConfigureAwait(false)*/;
+/*Task.Run(async () => LoadUnitsAsync());*/
     }
 
 
@@ -30,24 +31,25 @@ public partial class AddUnitViewModel : ObservableObject
     private ObservableCollection<UnitModel> unitList;             /*units = UnitService.Units();*/
 
 
-    public async Task LoadUnitsAsync()
+    public void LoadUnitsAsync()
     {
         /*await UnitService.GetAllUnitsAsync();*/
-        IEnumerable<UnitModel> units = await UnitService.GetAllUnitsAsync();
-        UnitList = new ObservableCollection<UnitModel>(units);
+        /*IEnumerable<UnitModel> units = await UnitService.GetAllUnitsAsync();*/
+        IEnumerable<UnitModel> _units = Task.Run(async () => await UnitService.GetAllUnitsAsync()).Result;
+        UnitList = new ObservableCollection<UnitModel>(_units);
     }
 
-    public ObservableCollection<UnitModel> UnitList
+ /*   public ObservableCollection<UnitModel> UnitList
     {
         get { return unitList; }
         set { SetProperty(ref unitList, value);
-    }
+    }*/
 
 
 
-
+/*
     [ObservableProperty]
-    private ObservableCollection<UnitModel> units = UnitService.Units();
+    private ObservableCollection<UnitModel> units;*/
 
 
 
@@ -56,7 +58,7 @@ public partial class AddUnitViewModel : ObservableObject
     {
         await UnitService.SaveUnitAsync(Unit); 
         foreach (var item in UnitService.Units()) 
-            Unit.Add(item);
+            UnitList.Add(item);
 
         Unit = new UnitModel();
     }

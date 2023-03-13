@@ -13,7 +13,7 @@ internal class FaultReportEntity
     public string FaultDescription { get; set; } = null!;
 
 
-    public DateTime TimeStamp { get; set; }
+    public DateTime TimeStamp { get; set; } = DateTime.Now;
 
 
     //Connects fault report to a specific resident.
