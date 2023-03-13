@@ -15,6 +15,9 @@ public partial class MainViewModel : ObservableObject
     [RelayCommand]
     private void GoToAddResident() => CurrentViewModel = new AddResidentViewModel();
 
+    [RelayCommand]
+    private void GoToFaultReport() => CurrentViewModel = new FaultReportViewModel();
+
     public MainViewModel()
     {
         CurrentViewModel = new AddUnitViewModel();

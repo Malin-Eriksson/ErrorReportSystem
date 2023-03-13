@@ -19,6 +19,7 @@
         <StackPanel Grid.Column="0">
             <Button Command="{Binding GoToAddUnitCommand}" Content="&#xf872;" Style="{StaticResource navButton}" />
             <Button Command="{Binding GoToAddResidentCommand}" Content="&#xf872;" Style="{StaticResource navButton}" />
+            <Button Command="{Binding GoToFaultReportCommand}" Content="&#xf872;" Style="{StaticResource navButton}" />
         </StackPanel>
 
         <ContentControl Grid.Column="1" Content="{Binding CurrentViewModel}">
@@ -28,6 +29,9 @@
                 </DataTemplate>
                 <DataTemplate DataType="{x:Type viewmodels:AddResidentViewModel}">
                     <views:AddResidentView />
+                </DataTemplate>
+                <DataTemplate DataType="{x:Type viewmodels:FaultReportViewModel}">
+                    <views:FaultReportView />
                 </DataTemplate>
             </ContentControl.Resources>
         </ContentControl>
