@@ -51,15 +51,26 @@ internal class UnitService
     }
 
     //delete unit
+    /*    public static async Task DeleteUnitAsync(int id)
+        {
+            var _unit = await _context.Units.SingleOrDefaultAsync(x => x.Id == id);
+            if (_unit != null )
+            {
+                _context.Remove(_unit);
+                await _context.SaveChangesAsync();
+            }
+        }*/
+
     public static async Task DeleteUnitAsync(int id)
     {
-        var _unit = await _context.Units.SingleOrDefaultAsync(x => x.Id == id);
-        if (_unit != null )
+        var _unit = await _context.Units.FirstOrDefaultAsync(x => x.Id == id);
+        if (_unit != null)
         {
             _context.Remove(_unit);
             await _context.SaveChangesAsync();
         }
     }
+
 
     public static ObservableCollection<UnitModel> Units()
     {

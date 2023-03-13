@@ -9,11 +9,12 @@
              mc:Ignorable="d" 
              d:DataContext="{d:DesignInstance Type=viewmodel:AddResidentViewModel}"
              d:DesignHeight="450" d:DesignWidth="800">
-    
-    
+
+
     <Grid Margin="40">
         <Grid.RowDefinitions>
             <RowDefinition Height="auto" />
+            <RowDefinition />
             <RowDefinition />
         </Grid.RowDefinitions>
 
@@ -26,7 +27,7 @@
                 <ColumnDefinition Width="40*" />
             </Grid.ColumnDefinitions>
 
-            <ListView Background="Transparent" ItemsSource="{Binding Residents}" HorizontalContentAlignment="Stretch" SelectionMode="Single" SelectedItem="{Binding SelectedResident}" Grid.ColumnSpan="2">
+            <ListView Background="Transparent" ItemsSource="{Binding ResidentList}" HorizontalContentAlignment="Stretch" SelectionMode="Single" SelectedItem="{Binding SelectedResident}" Grid.ColumnSpan="2">
                 <ListView.ItemTemplate>
                     <DataTemplate DataType="{x:Type models:ResidentModel}">
                         <Grid Margin="0 5 0 5">
@@ -43,7 +44,7 @@
                                 <TextBlock Text="{Binding PhoneNumber}" />
                                 <TextBlock Text="{Binding UnitId}" />
                             </StackPanel>
-                            <Button Command="{Binding DeleteResidentAsyncCommand}" Content="Remove" Width="90" Margin="5 15 5 5"/>
+
 
                         </Grid>
                     </DataTemplate>
@@ -66,8 +67,10 @@
                 <TextBlock Grid.Column="0" Text="Unit ID: " />
                 <TextBox Grid.Column="1" x:Name="tb_unitId" Padding="5" Margin="0 5 0 5" Width="400" HorizontalAlignment="left" />
 
-                <Button x:Name="Add" Click="btn_add_Click"  Content="ADD Resident" Padding="8" Width="100" HorizontalAlignment="left"/>
+                <Button x:Name="Add" Click="btn_add_Click"  Content="Add resident" Padding="8" Width="100" HorizontalAlignment="left"/>
             </StackPanel>
+            <StackPanel/>
         </Grid>
+        <Button Command="{Binding DeleteResidentCommand}" Content="Remove" Margin="10,10,620,115" Grid.Row="2"/>
     </Grid>
 </UserControl>

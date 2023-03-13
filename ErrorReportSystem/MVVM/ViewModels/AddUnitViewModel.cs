@@ -22,84 +22,63 @@ public partial class AddUnitViewModel : ObservableObject
 
     public AddUnitViewModel()
     {
-        LoadUnitsAsync()/*.ConfigureAwait(false)*/;
-/*Task.Run(async () => LoadUnitsAsync());*/
+        LoadUnitsAsync();
     }
 
 
     [ObservableProperty]
-    private ObservableCollection<UnitModel> unitList;             /*units = UnitService.Units();*/
+    private ObservableCollection<UnitModel> unitList;             
 
 
     public void LoadUnitsAsync()
     {
-        /*await UnitService.GetAllUnitsAsync();*/
-        /*IEnumerable<UnitModel> units = await UnitService.GetAllUnitsAsync();*/
         IEnumerable<UnitModel> _units = Task.Run(async () => await UnitService.GetAllUnitsAsync()).Result;
         UnitList = new ObservableCollection<UnitModel>(_units);
     }
-
- /*   public ObservableCollection<UnitModel> UnitList
-    {
-        get { return unitList; }
-        set { SetProperty(ref unitList, value);
-    }*/
-
-
-
-/*
-    [ObservableProperty]
-    private ObservableCollection<UnitModel> units;*/
 
 
 
     [RelayCommand]
     public async Task Add()
     {
-        await UnitService.SaveUnitAsync(Unit); 
-        foreach (var item in UnitService.Units()) 
+        await UnitService.SaveUnitAsync(Unit);
+        foreach (var item in UnitService.Units())
+            /*foreach (var item in await UnitService.GetAllUnitsAsync());*/
             UnitList.Add(item);
 
         Unit = new UnitModel();
     }
 
-
     [ObservableProperty]
-    private UnitModel selectedUnit = null!;
+    public UnitModel selectedUnit = null!;
+
+
+       [RelayCommand]
+       public async Task DeleteUnit()
+       {
+        await UnitService.DeleteUnitAsync(SelectedUnit.Id);
+       }
 
 
 
-    /*    [RelayCommand]
-        public async Task Add()
+/*    [RelayCommand]
+    public async Task DeleteUnitAsync()
+    {
+        string mb_message = "Are you sure you want to delete this unit?";
+        string mb_title = "Delete unit";
+        MessageBoxButton buttons = MessageBoxButton.YesNo;
+        MessageBoxImage mb_icon = MessageBoxImage.Question;
+        MessageBoxResult result;
+
+
+        result = MessageBox.Show(mb_message, mb_title, buttons, mb_icon, MessageBoxResult.Yes);
+
+        if (result == MessageBoxResult.Yes)
         {
-            await UnitService.SaveUnitAsync(Unit);
-            Unit = new UnitModel();
-        }*/
+            await UnitService.DeleteUnitAsync(SelectedUnit.Id);
+        }
+        else { }
 
-
-
-
-
-
-
-    /*    [RelayCommand]
-        public void DeleteUnitAsync()
-        {
-            string mb_message = "Are you sure you want to delete this contact?";
-            string mb_title = "Delete contact";
-            MessageBoxButton buttons = MessageBoxButton.YesNo;
-            MessageBoxImage mb_icon = MessageBoxImage.Question;
-            MessageBoxResult result;
-
-
-            result = MessageBox.Show(mb_message, mb_title, buttons, mb_icon, MessageBoxResult.Yes);
-
-            if (result == MessageBoxResult.Yes)
-            {
-                UnitService.DeleteUnitAsync(SelectedUnit);
-            }
-            else { }
-
-        }*/
+    }*/
 }
 

@@ -9,10 +9,11 @@
              mc:Ignorable="d" 
              d:DataContext="{d:DesignInstance Type=viewmodels:AddUnitViewModel}"
              d:DesignHeight="450" d:DesignWidth="800">
-    
+
     <Grid Margin="40">
         <Grid.RowDefinitions>
             <RowDefinition Height="auto" />
+            <RowDefinition />
             <RowDefinition />
         </Grid.RowDefinitions>
 
@@ -42,16 +43,11 @@
                                 <TextBlock Text="{Binding PostalCode}" />
                                 <TextBlock Text="{Binding City}" />
                             </StackPanel>
-                            <Button Command="{Binding DeleteUnitAsyncCommand}" Content="Remove" Width="90" Margin="5 15 5 5"/>
 
                         </Grid>
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
-
-
-
-            
 
             <StackPanel Grid.Row="1" Grid.Column="2">
                 <TextBlock Grid.Column="0" Text="Street: " HorizontalAlignment="left" />
@@ -67,6 +63,8 @@
 
                 <Button x:Name="Add" Click="btn_add_Click"  Content="ADD UNIT" Padding="8" Width="100" HorizontalAlignment="left"/>
             </StackPanel>
+
         </Grid>
+        <Button Command="{Binding DeleteUnitCommand}" Content="Remove" Margin="55,92,575,33" Grid.Row="2"/>
     </Grid>
 </UserControl>
