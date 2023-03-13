@@ -1,17 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using ErrorReportSystem.MVVM.Models;
+using ErrorReportSystem.Services;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+
 
 namespace ErrorReportSystem.MVVM.Views
 {
@@ -23,6 +14,25 @@ namespace ErrorReportSystem.MVVM.Views
         public FaultReportView()
         {
             InitializeComponent();
+        }
+
+        private void btn_add_Click(object sender, RoutedEventArgs e)
+        {
+            FaultReportService.SaveFaultReportAsync(new FaultReportModel
+            {
+                ResidentId = int.Parse(tb_residentId.Text),
+                FaultDescription = tb_faultDescription.Text
+
+            });
+
+            ClearForm();
+
+        }
+
+        private void ClearForm()
+        {
+            tb_residentId.Text = string.Empty;
+            tb_faultDescription.Text = string.Empty;
         }
     }
 }

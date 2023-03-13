@@ -35,11 +35,14 @@
 
                             <StackPanel Grid.Column="0" HorizontalAlignment="Left">
                                 <TextBlock Text="{Binding Id}" />
-                                <TextBlock Text="{Binding }" />
-                                <TextBlock Text="{Binding StreetNumber}" />
-                                <TextBlock Text="{Binding ApartmentNo}" />
-                                <TextBlock Text="{Binding PostalCode}" />
-                                <TextBlock Text="{Binding City}" />
+                                <TextBlock Text="{Binding TimeStamp}" />
+                                <TextBlock Text="{Binding ResidentId}" />
+                                <TextBlock Text="{Binding FirstName}" />
+                                <TextBlock Text="{Binding LastName}" />
+                                <TextBlock Text="{Binding Email}" />
+                                <TextBlock Text="{Binding PhoneNumber}" />
+                                <TextBlock Text="{Binding FaultDescription}" />
+                                <TextBlock Text="{Binding StatusId}" />
                             </StackPanel>
 
                         </Grid>
@@ -48,18 +51,13 @@
             </ListView>
 
             <StackPanel Grid.Row="1" Grid.Column="2">
-                <TextBlock Grid.Column="0" Text="Street: " HorizontalAlignment="left" />
-                <TextBox Grid.Column="1" x:Name="tb_street"  Padding="5" Margin="0 5 0 5" Width="400"  HorizontalAlignment="Left" />
-                <TextBlock Grid.Column="0" Text="StreetNumber: " />
-                <TextBox Grid.Column="1" x:Name="tb_streetNumber" Padding="5" Margin="0 5 0 5" Width="400" HorizontalAlignment="left" />
-                <TextBlock Grid.Column="0" Text="ApartmentNo: " />
-                <TextBox Grid.Column="1" x:Name="tb_apartmentNo"  Padding="5" Margin="0 5 0 5" Width="400" HorizontalAlignment="left" />
-                <TextBlock Grid.Column="0" Text="Postal code: " />
-                <TextBox Grid.Column="1" x:Name="tb_postalCode" Padding="5" Margin="0 5 0 5" Width="400" HorizontalAlignment="left" />
-                <TextBlock Grid.Column="0" Text="City: " />
-                <TextBox Grid.Column="1" x:Name="tb_city" Padding="5" Margin="0 5 0 5" Width="400" HorizontalAlignment="left" />
+                <TextBlock Grid.Column="0" Text="Resident Id: " HorizontalAlignment="left" />
+                <TextBox Grid.Column="1" x:Name="tb_residentId"  Padding="5" Margin="0 5 0 5" Width="400"  HorizontalAlignment="Left" />
+                <TextBlock Grid.Column="0" Text="Fault description: " />
+                <TextBox Grid.Column="1" x:Name="tb_faultDescription" Padding="5" Margin="0 5 0 5" Width="400" HorizontalAlignment="left" />
 
-                <Button x:Name="Add" Click="btn_add_Click"  Content="ADD UNIT" Padding="8" Width="100" HorizontalAlignment="left"/>
+
+                <Button x:Name="Add" Click="btn_add_Click"  Content="Submit fault report" Padding="8" Width="100" HorizontalAlignment="left"/>
             </StackPanel>
 
         </Grid>
