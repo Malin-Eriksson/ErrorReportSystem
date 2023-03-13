@@ -12,42 +12,58 @@ namespace ErrorReportSystem.MVVM.ViewModels;
 public partial class AddUnitViewModel : ObservableObject
 {
 
+    [ObservableProperty]
+    private string pageTitle = "Add unit";
+
+    [ObservableProperty]
+    private UnitModel unit = new UnitModel();
+
+
+
     public AddUnitViewModel()
     {
         LoadUnitsAsync();
     }
 
 
+    [ObservableProperty]
+    private ObservableCollection<UnitModel> unitList;             /*units = UnitService.Units();*/
+
+
     public async Task LoadUnitsAsync()
     {
-        await UnitService.GetAllUnitsAsync();
+        /*await UnitService.GetAllUnitsAsync();*/
+        IEnumerable<UnitModel> units = await UnitService.GetAllUnitsAsync();
+        UnitList = new ObservableCollection<UnitModel>(units);
+    }
+
+    public ObservableCollection<UnitModel> UnitList
+    {
+        get { return unitList; }
+        set { SetProperty(ref unitList, value);
     }
 
 
 
 
     [ObservableProperty]
-    private string pageTitle = "Add unit";
-
-    [ObservableProperty]
     private ObservableCollection<UnitModel> units = UnitService.Units();
 
 
-    [ObservableProperty]
-    private UnitModel unit = new UnitModel();
-
-    [ObservableProperty]
-    private UnitModel selectedUnit = null!;
 
     [RelayCommand]
     public async Task Add()
     {
         await UnitService.SaveUnitAsync(Unit); 
         foreach (var item in UnitService.Units()) 
-            Units.Add(item);
+            Unit.Add(item);
 
         Unit = new UnitModel();
     }
+
+
+    [ObservableProperty]
+    private UnitModel selectedUnit = null!;
 
 
 

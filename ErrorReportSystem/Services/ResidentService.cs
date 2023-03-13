@@ -3,6 +3,7 @@ using ErrorReportSystem.MVVM.Models;
 using ErrorReportSystem.MVVM.Models.Entities;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 
 
@@ -11,6 +12,7 @@ namespace ErrorReportSystem.Services;
 internal class ResidentService
 {
     private static DataContext _context = new DataContext();
+    public static ObservableCollection<ResidentModel> residents;
 
 
     //function to save resident and their unit id. 
@@ -47,7 +49,7 @@ internal class ResidentService
         foreach (var _resident in await _context.Residents.Include(x => x.Unit).ToListAsync())
             _residents.Add(new ResidentModel
             {
-                Id= _resident.Id,
+                Id = _resident.Id,
                 FirstName = _resident.FirstName,
                 LastName = _resident.LastName,
                 Email = _resident.Email,
@@ -86,4 +88,11 @@ internal class ResidentService
             await _context.SaveChangesAsync();
         }
     }
+
+    public static ObservableCollection<ResidentModel> Residents()
+    {
+        return residents;
+    }
+
+
 }

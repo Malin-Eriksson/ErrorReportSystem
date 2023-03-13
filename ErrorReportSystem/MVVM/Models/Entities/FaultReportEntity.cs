@@ -1,4 +1,5 @@
 ﻿using Microsoft.VisualBasic;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -12,7 +13,7 @@ internal class FaultReportEntity
     public string FaultDescription { get; set; } = null!;
 
 
-    public byte[]? TimeStamp { get; set; }
+    public DateTime TimeStamp { get; set; }
 
 
     //Connects fault report to a specific resident.

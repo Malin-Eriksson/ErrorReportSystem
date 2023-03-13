@@ -18,7 +18,7 @@
 
         <StackPanel Grid.Column="0">
             <Button Command="{Binding GoToAddUnitCommand}" Content="&#xf872;" Style="{StaticResource navButton}" />
-
+            <Button Command="{Binding GoToAddResidentCommand}" Content="&#xf872;" Style="{StaticResource navButton}" />
         </StackPanel>
 
         <ContentControl Grid.Column="1" Content="{Binding CurrentViewModel}">
@@ -26,8 +26,9 @@
                 <DataTemplate DataType="{x:Type viewmodels:AddUnitViewModel}">
                     <views:AddUnitView />
                 </DataTemplate>
-                
-
+                <DataTemplate DataType="{x:Type viewmodels:AddResidentViewModel}">
+                    <views:AddUnitView />
+                </DataTemplate>
             </ContentControl.Resources>
         </ContentControl>
     </Grid>

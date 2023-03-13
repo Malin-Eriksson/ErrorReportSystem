@@ -1,4 +1,5 @@
 ﻿using Microsoft.VisualBasic;
+using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -9,7 +10,7 @@ internal class CommentEntity
     public int Id { get; set; }
 
 
-    public byte[]? TimeStamp { get; set; }
+    public DateTime TimeStamp { get; set; }
 
 
     //Connects comment/s to a specific fault report.  
